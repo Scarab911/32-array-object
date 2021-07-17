@@ -1,6 +1,9 @@
 class Person {
     constructor(data) {
         this.personData = data;
+
+        this.children = this.personData.children;
+        this.cars = this.personData.cars;
     }
     fullName(print = true) {
 
@@ -17,25 +20,25 @@ class Person {
     };
 
     firstChild() {
-        const children = this.personData.children;
-        console.log(`${children[0].firstname} ${children[0].lastname} (${children[0].age})`);
+
+        console.log(`${this.children[0].firstname} ${this.children[0].lastname} (${this.children[0].age})`);
 
     };
 
     lastChild() {
-        const children = this.personData.children;
-        const lastKid = children[children.length - 1]
+
+        const lastKid = this.children[this.children.length - 1]
         console.log(`${lastKid.firstname} ${lastKid.lastname} (${lastKid.age})`);
     };
 
     firstCar() {
-        const cars = this.personData.cars;
-        console.log(`${cars[0].brand} ${cars[0].model} (${cars[0].color})`);
+
+        console.log(`${this.cars[0].brand} ${this.cars[0].model} (${this.cars[0].color})`);
     };
 
     lastCar() {
-        const cars = this.personData.cars;
-        const lastCar = cars[cars.length - 1];
+
+        const lastCar = this.cars[this.cars.length - 1];
         console.log(`${lastCar.brand} ${lastCar.model} (${lastCar.color})`);
     };
 
@@ -46,19 +49,17 @@ class Person {
 
     chidren() {
         let count = 0;
-        const children = this.personData.children;
+
         console.log(`This is a chidren of ${this.fullName(false)}:`)
-        for (const child of children) {
-            ++count;
-            console.log(`${count}. ${child.firstname} ${child.lastname}(${child.age})`)
+        for (const child of this.children) {
+            console.log(`${++count}. ${child.firstname} ${child.lastname}(${child.age})`)
         }
     };
 
     aliveChildren() {
         let count = 0;
-        const children = this.personData.children;
 
-        for (const child of children) {
+        for (const child of this.children) {
             if (child.alive) {
                 count++;
             }
@@ -68,14 +69,12 @@ class Person {
 
     autopark() {
         let carCount = 0;
-        const cars = this.personData.cars;
+
         console.log(`This is ${this.personData.firstname} cars:`)
-        for (const car of cars) {
-            ++carCount;
-            console.log(`${carCount}. ${car.brand} ${car.model} (${car.color})`);
+        for (const car of this.cars) {
+            console.log(`${++carCount}. ${car.brand} ${car.model} (${car.color})`);
         }
     };
-
 
     wherePersonLive() {
         const personHome = this.personData.adress;
@@ -83,15 +82,15 @@ class Person {
     };
 
     carPrice(index) {
-        const cars = this.personData.cars;
+
         const id = index;
-        console.log(`--- ${cars[id].brand} ${cars[id].model} is purchased for ${cars[id].price} ${cars[id].currency}.`);
+        console.log(`--- ${this.cars[id].brand} ${this.cars[id].model} is purchased for ${this.cars[id].price} ${this.cars[id].currency}.`);
     };
 
     totalSpentForCars(print = true) {
         let totalSpent = 0;
-        const cars = this.personData.cars;
-        for (const car of cars) {
+
+        for (const car of this.cars) {
             if (car.currency === 'Litas') {
                 totalSpent += car.price / 3.45;
             } else {
