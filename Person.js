@@ -2,9 +2,13 @@ class Person {
     constructor(data) {
         this.personData = data;
     }
-    fullName() {
+    fullName(print = true) {
+
         const fullName = this.personData.firstname + ' ' + this.personData.lastname;
-        console.log(fullName);
+        if (print) {
+
+            console.log(fullName);
+        }
         return fullName;
     };
 
@@ -43,7 +47,7 @@ class Person {
     chidren() {
         let count = 0;
         const children = this.personData.children;
-        console.log(`This is a chidren of ${this.personData.firstname} ${this.personData.lastname}:`)
+        console.log(`This is a chidren of ${this.fullName(false)}:`)
         for (const child of children) {
             ++count;
             console.log(`${count}. ${child.firstname} ${child.lastname}(${child.age})`)
@@ -59,7 +63,7 @@ class Person {
                 count++;
             }
         }
-        console.log(`${this.fullName()} has only ${count} children alive.`);
+        console.log(`${this.fullName(false)} has only ${count} children alive.`);
     };
 
     autopark() {
@@ -81,7 +85,7 @@ class Person {
     carPrice(index) {
         const cars = this.personData.cars;
         const id = index;
-        console.log(`${cars[id].brand} ${cars[id].model} is purchased for ${cars[id].price} ${cars[id].currency}.`);
+        console.log(`--- ${cars[id].brand} ${cars[id].model} is purchased for ${cars[id].price} ${cars[id].currency}.`);
     };
 
     totalSpentForCars(print = true) {
@@ -93,11 +97,10 @@ class Person {
             } else {
                 totalSpent += car.price;
             }
-
         }
         if (print) {
 
-            console.log(`${this.personData.firstname} has spent ${totalSpent.toFixed(2)} Euros for his cars.`);
+            console.log(`==${this.personData.firstname} has spent ${totalSpent.toFixed(2)} Euros for his cars.`);
         }
         return totalSpent;
     };
@@ -107,14 +110,14 @@ class Person {
         const cost = apartments.price;
         if (print) {
 
-            console.log(`${this.personData.firstname} has spent ${cost} ${apartments.currency} for his apartments.`);
+            console.log(`==${this.personData.firstname} has spent ${cost} ${apartments.currency} for his apartments.`);
         }
         return cost;
     };
 
     totalSpendings() {
         const allTimeSpent = this.totalSpentForApartments(false) + this.totalSpentForCars(false);
-        console.log(`${this.personData.firstname} has spent ${allTimeSpent.toFixed(2)} Euros tottaly.`);
+        console.log(`==${this.personData.firstname} has spent ${allTimeSpent.toFixed(2)} Euros tottaly.`);
     };
 }
 
